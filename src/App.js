@@ -1,5 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
+import { xBullWalletConnect } from '@creit-tech/xbull-wallet-connect';
+
+async function getPublicKey()  {
+  console.log("🚀 ~ getPublicKey: Will read the Public Key")
+  const bridge = new xBullWalletConnect();
+  console.log("🚀 ~ getPublicKey ~ bridge just created:", bridge)
+  const publicKey = await bridge.connect();
+  console.log("🚀 ~ getPublicKey ~ publicKey:", publicKey)
+  bridge.closeConnections();
+  console.log("🚀 ~ getPublicKey ~ bridge after closing connectins:", bridge)
+  return publicKey;
+
+}
 
 function App() {
   return (
@@ -17,6 +30,7 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={getPublicKey}>Click to console.log Public Key</button>
       </header>
     </div>
   );
